@@ -1,4 +1,4 @@
-# Vite + Preact + Tailwind CSS starter
+# A simple Todo App using Vite + Preact + Typescript + Tailwind CSS + ReduxZero
 
 > This project uses Vite for blazing fast development server ⚡
 
@@ -10,38 +10,16 @@
 - 📝 Eslint
 - ✨ Prettier
 - 🔱Typescript
-- ☁️ Deploy on Netlify, zero-config
-- 🐺 Husky for pre-commit lint
-- ❓ PWA? (UNTESTED)
-
-## Clone this repo
-
-Use [degit](https://github.com/Rich-Harris/degit)
-
-```
-degit gnomeria/preact-vite-starter my-project
-```
-
-or
-
-```
-git clone https://github.com/gnomeria/preact-vite-starter
-```
+- ReduxZero for state management
 
 ## Installation
 
-```sh
-pnpm install
-```
+npm i
 
 ## Development
 
-```sh
-pnpm dev
-```
+npm run dev
 
 ## Build
 
-```sh
-pnpm build
-```
+npm run build
