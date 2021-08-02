@@ -1,56 +1,73 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
-import { getTasks } from './Service/Service';
-import AddTasks from './Tasks/AddTasks';
-import CompletedTask from './Tasks/CompletedTask';
-import ListTasks from './Tasks/ListTasks';
-import { Task } from './Tasks/Task';
-import { TaskStatus } from './Tasks/TaskStatus';
+import { getTasks, updateTasks } from './Service/Service';
+import AddTasks from './Components/Tasks/AddTasks';
+import CompletedTask from './Components/Tasks/CompletedTask';
+import ActiveTask from './Components/Tasks/ActiveTask';
+import { Task } from './Model/Task';
+import { TaskStatus } from './Model/TaskStatus';
+import * as dotenv from 'dotenv';
+import { Tasks } from './Model/Tasks';
 
 export const App = (() => {
-  const [Tasks, setTasks] = useState<Task[]>([]);
+  const [ActiveTasks, setActiveTasks] = useState<Task[]>([]);
   const [CompletedTasks, setCompletedTasks] = useState<Task[]>([]);
+  const [UpdateTasks, setUpdateTasks] = useState(false);
 
   function onCheck(index: number): void {
-    const completedTask = Tasks[index];
-    completedTask.status=TaskStatus.Completed;
+    const completedTask = ActiveTasks[index];
+    completedTask.status = TaskStatus.Completed;
     setCompletedTasks([...CompletedTasks, completedTask]);
     onDelete(index);
   }
-
   function onDelete(index: number): void {
-    Tasks.splice(index, 1);
-    setTasks([...Tasks]);
+    ActiveTasks.splice(index, 1);
+    setActiveTasks([...ActiveTasks]);
+    setUpdateTasks(true);
   }
-
-  function onDeleteComplete(index: number): void {
+  function onAddTask(task: Task[]): void {
+    setActiveTasks(task);
+    setUpdateTasks(true);
+  }
+  function onUncheck(index: number): void {
     const deleteCompletedTask = CompletedTasks[index];
-    deleteCompletedTask.status=TaskStatus.Active;
-    setTasks([...Tasks,deleteCompletedTask]);
+    deleteCompletedTask.status = TaskStatus.Active;
+    setActiveTasks([...ActiveTasks, deleteCompletedTask]);
     CompletedTasks.splice(index, 1);
     setCompletedTasks([...CompletedTasks]);
+    setUpdateTasks(true);
   }
-  // useEffect(() => {
-  //   getTasks().then(tasks => {
-  //     setTasks([tasks])
-  //   }
-  //   ).catch(e => console.log(e))
-  // }, []);
-  console.log(Tasks);
-  console.log(CompletedTasks);
+  
+  /* useEffect(() => {
+    getTasks().then((tasks:Tasks) => { 
+      if(tasks.tasks!=null){
+        const activeTasks = tasks.tasks.filter((x:Task) => x.status=="Active");
+        const completedTasks = tasks.tasks.filter((x:Task) => x.status=="Completed");
+        setActiveTasks(activeTasks);
+        setCompletedTasks(completedTasks);    
+        }
+      })
+      .catch(e => console.log(e))
+  }, []);
+
+  useEffect(() => {
+    if(UpdateTasks){
+      updateTasks([...ActiveTasks,...CompletedTasks])
+      setUpdateTasks(false);
+    }
+  }, [UpdateTasks]) */
+
+  console.log("Active Tasks: " + ActiveTasks.length);
+  console.log("Completed Tasks: " + CompletedTasks.length);
+
   return (
     <div class="container mx-auto md:w-1/2">
       <h1 class="text-5xl">Todo App</h1>
-      <AddTasks Tasks={Tasks} setTasks={setTasks} />
-      <ListTasks Tasks={Tasks} onCheck={onCheck} onDelete={onDelete} />
-      <CompletedTask CompletedTasks={CompletedTasks} onDelete={onDeleteComplete}/>
+      <AddTasks Tasks={ActiveTasks} onAddTask={onAddTask} />
+      <ActiveTask Tasks={ActiveTasks} onCheck={onCheck} onDelete={onDelete} />
+      <CompletedTask CompletedTasks={CompletedTasks} onDelete={onUncheck} />
     </div>
   );
 }
 )
 
-// export const App = () => (
-//   <Provider store={store}>
-//     <App1 />
-//   </Provider>
-// )

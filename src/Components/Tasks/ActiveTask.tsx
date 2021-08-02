@@ -1,10 +1,10 @@
 import { h } from 'preact';
 import { StateUpdater, useState } from 'preact/hooks';
-import CheckButton from '../Components/CheckButton';
-import DeleteButton from '../Components/DeleteButton';
-import { Task } from './Task';
+import CheckButton from '../ButtonComponents/CheckButton';
+import DeleteButton from '../ButtonComponents/DeleteButton';
+import { Task } from '../../Model/Task';
 
-export default function ListTasks(props: any) {
+export default function ActiveTask(props: any) {
     const Tasks: Task[] = props.Tasks;
     const onCheck: StateUpdater<number> = props.onCheck;
     const onDelete: StateUpdater<number> = props.onDelete;
