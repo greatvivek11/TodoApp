@@ -17,7 +17,7 @@
     {
       "type": "cosmosDB",
       "name": "getTasks",
-      "databaseName": "TasksDB",
+      "databaseName": "ToDoList",
       "collectionName": "tasks",
       "connectionStringSetting": "CosmosDBConnection",
       "direction": "in",

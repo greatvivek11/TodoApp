@@ -10,9 +10,6 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/storage-blob": "^12.4.1",
-    "@types/node": "^14.14.28",
-    "@wordpress/api-fetch": "^3.21.5"
   },
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
