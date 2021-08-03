@@ -7,17 +7,39 @@ import ActiveTask from './Components/Tasks/ActiveTask';
 import { Task } from './Model/Task';
 import { TaskStatus } from './Model/TaskStatus';
 import * as dotenv from 'dotenv';
-import { Tasks } from './Model/Tasks';
 
 export const App = (() => {
-  const [ActiveTasks, setActiveTasks] = useState<Task[]>([]);
-  const [CompletedTasks, setCompletedTasks] = useState<Task[]>([]);
+  const divInstall = document.getElementById('installContainer');
+  const butInstall = document.getElementById('butInstall');
+
+  /* Only register a service worker if it's supported */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js');
+}
+
+/**
+ * Warn the page must be served over HTTPS
+ * The `beforeinstallprompt` event won't fire if the page is served over HTTP.
+ * Installability requires a service worker with a fetch event handler, and
+ * if the page isn't served over HTTPS, the service worker won't load.
+ */
+if (window.location.protocol === 'http:') {
+  const requireHTTPS = document.getElementById('requireHTTPS')!!;
+  const link = requireHTTPS.querySelector('a')!!;
+  link.href = window.location.href.replace('http://', 'https://');
+  requireHTTPS.classList.remove('hidden');
+}
+
+  const initialActiveTasks: Task[] = (localStorage.getItem("ActiveTasks") !== null) ? JSON.parse(localStorage.getItem("ActiveTasks")!!) : [];
+  const initialCompletedTasks: Task[] = (localStorage.getItem("CompletedTasks") !== null) ? JSON.parse(localStorage.getItem("CompletedTasks")!!) : [];
+  const [ActiveTasks, setActiveTasks] = useState<Task[]>(initialActiveTasks);
+  const [CompletedTasks, setCompletedTasks] = useState<Task[]>(initialCompletedTasks);
   const [UpdateTasks, setUpdateTasks] = useState(false);
 
   function onCheck(index: number): void {
     const completedTask = ActiveTasks[index];
     completedTask.status = TaskStatus.Completed;
-    setCompletedTasks([...CompletedTasks, completedTask]);
+    setCompletedTasks([...CompletedTasks,completedTask]);
     onDelete(index);
   }
   function onDelete(index: number): void {
@@ -25,7 +47,7 @@ export const App = (() => {
     setActiveTasks([...ActiveTasks]);
     setUpdateTasks(true);
   }
-  function onAddTask(task: Task[]): void {
+  function onAddTask(task: Task[]):void {
     setActiveTasks(task);
     setUpdateTasks(true);
   }
@@ -37,7 +59,15 @@ export const App = (() => {
     setCompletedTasks([...CompletedTasks]);
     setUpdateTasks(true);
   }
-  
+
+  useEffect(() => {
+    localStorage.setItem('ActiveTasks', JSON.stringify(ActiveTasks));
+  }, [ActiveTasks])
+
+  useEffect(() => {
+    localStorage.setItem('CompletedTasks', JSON.stringify(CompletedTasks));
+  }, [CompletedTasks])
+
   /* useEffect(() => {
     getTasks().then((tasks:Tasks) => { 
       if(tasks.tasks!=null){
@@ -57,6 +87,14 @@ export const App = (() => {
     }
   }, [UpdateTasks]) */
 
+  function returnLineBreak(): any {
+    if (CompletedTasks.length > 0 && ActiveTasks.length > 0) {
+      return (
+        <hr></hr>
+      );
+    }
+  }
+
   console.log("Active Tasks: " + ActiveTasks.length);
   console.log("Completed Tasks: " + CompletedTasks.length);
 
@@ -65,6 +103,7 @@ export const App = (() => {
       <h1 class="text-5xl">Todo App</h1>
       <AddTasks Tasks={ActiveTasks} onAddTask={onAddTask} />
       <ActiveTask Tasks={ActiveTasks} onCheck={onCheck} onDelete={onDelete} />
+      {returnLineBreak()}
       <CompletedTask CompletedTasks={CompletedTasks} onDelete={onUncheck} />
     </div>
   );

@@ -25,7 +25,7 @@ export default function AddTasks(props:any) {
   }
   return (
     <div class="container mx-auto mt-2">
-      <form class="my-6" onSubmit={onSubmit}>
+      <form class="my-6" autocomplete="off" onSubmit={onSubmit}>
         <input type="text" name="addTask" class="mx-2 text-black" id="addTask" placeholder="Add a task" onInput={(e:any) => addInputChange(e.target.value)} />
         <button class="border border-red-800 bg-red-600 mx-2 mt-4 rounded-md px-4" type="submit">Add Task</button>
       </form>

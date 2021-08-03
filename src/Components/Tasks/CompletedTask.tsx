@@ -7,7 +7,7 @@ export default function CompletedTask(props: any) {
     const CompletedTasks:Task[] = props.CompletedTasks;
     const onDelete: StateUpdater<number> = props.onDelete;
     return (
-        <div>
+        <div class="container mx-auto mt-5">
             {CompletedTasks?.map((task,i) => {
                 return(
                     <div class="flex flex-wrap px-5 md:px-20">
