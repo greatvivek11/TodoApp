@@ -10,7 +10,7 @@ export default function ActiveTask(props: any) {
     const onDelete: StateUpdater<number> = props.onDelete;
 
     return (
-        <div class="container mx-auto">
+        <div class="container mx-auto mb-5">
             {Tasks?.map((task, i) => {
                 return (
                     <div class="flex flex-wrap px-5 md:px-20">
