@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "put"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "putTasks",
+      "type": "cosmosDB",
+      "databaseName": "ToDoList",
+      "collectionName": "tasks",
+      "createIfNotExists": true,
+      "connectionStringSetting": "CosmosDBConnection",
+      "direction": "out"
+  }
+  ],
+  "scriptFile": "../dist/putTasks/index.js"
+}

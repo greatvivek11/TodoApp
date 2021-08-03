@@ -1,7 +1,7 @@
 import {h} from 'preact';
 import { StateUpdater } from 'preact/hooks';
-import DeleteButton from '../Components/DeleteButton';
-import { Task } from './Task';
+import DeleteButton from '../ButtonComponents/DeleteButton';
+import { Task } from '../../Model/Task';
 
 export default function CompletedTask(props: any) {
     const CompletedTasks:Task[] = props.CompletedTasks;
