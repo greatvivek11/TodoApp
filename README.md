@@ -10,8 +10,9 @@
 - ⚡ [Vite v2.0](https://github.com/vitejs/vite)
 - 📝 Eslint
 - ✨ Prettier
-- 🔱Typescript
-- ReduxZero for state management
+- 🔱 Typescript
+- 💥 Redux for state management
+- 🔥 PWA
 
 ## Installation
 
