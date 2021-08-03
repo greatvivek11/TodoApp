@@ -1,7 +1,7 @@
 {
   "name": "TodoApp",
   "short_name": "TodoApp",
-  "start_url": "/",
+  "start_url": "https://todo.vivekkaushik.in",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#673ab8",
