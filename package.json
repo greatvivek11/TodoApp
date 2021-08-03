@@ -1,6 +1,6 @@
 {
   "name": "preact-vite-tailwind-todo-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "cross-env NODE_ENV=production vite build"
