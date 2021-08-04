@@ -8,13 +8,13 @@
   "theme_color": "#fff",
   "icons": [
     {
-      "src": "/tick-box-192x192.png",
+      "src": "/public/tick-box-192x192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/tick-box-512x512.png",
+      "src": "/public/tick-box-512x512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
