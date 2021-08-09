@@ -82,7 +82,7 @@ export const App = (() => {
   console.log("Completed Tasks: " + CompletedTasks.length);
 
   return (
-    <div class="container mx-auto md:w-1/2">
+    <div class="container mx-auto lg:w-1/2">
       <h1 class="text-5xl">Todo App</h1>
       <AddTasks Tasks={ActiveTasks} onAddTask={onAddTask} />
       <ActiveTask Tasks={ActiveTasks} onCheck={onCheck} onAddTask={onAddTask} onDelete={onDelete} />

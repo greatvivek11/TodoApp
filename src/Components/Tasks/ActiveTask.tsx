@@ -24,7 +24,7 @@ export default function ActiveTask(props: any) {
     }
 
     return (
-        <div class="container mx-auto mb-5">
+        <div class="container overflow-y:auto mx-auto mb-5">
             {Tasks?.map((task, i) => {
                 return (
                     <div class="flex flex-wrap px-5 md:px-20">
@@ -38,7 +38,6 @@ export default function ActiveTask(props: any) {
                             handleOnInput = {(e:any) => handleEditTask(e,i)}
                             handleKeyDown = {(e:any) => pushTasks(e)}
                         />
-                        {/* <p class="flex-grow w-2/3">{task.task}</p> */}
                         <DeleteButton onDelete={onDelete} index={i} />
                     </div>
                 );
