@@ -7,29 +7,11 @@ import ActiveTask from './Components/Tasks/ActiveTask';
 import { Task } from './Model/Task';
 import { TaskStatus } from './Model/TaskStatus';
 import * as dotenv from 'dotenv';
+import InitializingServiceWorker from './Components/ServiceWorker';
+import Footer from './Components/Footer';
 
 export const App = (() => {
-  const divInstall = document.getElementById('installContainer');
-  const butInstall = document.getElementById('butInstall');
-
-  /* Only register a service worker if it's supported */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
-}
-
-/**
- * Warn the page must be served over HTTPS
- * The `beforeinstallprompt` event won't fire if the page is served over HTTP.
- * Installability requires a service worker with a fetch event handler, and
- * if the page isn't served over HTTPS, the service worker won't load.
- */
-if (window.location.protocol === 'http:') {
-  const requireHTTPS = document.getElementById('requireHTTPS')!!;
-  const link = requireHTTPS.querySelector('a')!!;
-  link.href = window.location.href.replace('http://', 'https://');
-  requireHTTPS.classList.remove('hidden');
-}
-
+  InitializingServiceWorker();
   const initialActiveTasks: Task[] = (localStorage.getItem("ActiveTasks") !== null) ? JSON.parse(localStorage.getItem("ActiveTasks")!!) : [];
   const initialCompletedTasks: Task[] = (localStorage.getItem("CompletedTasks") !== null) ? JSON.parse(localStorage.getItem("CompletedTasks")!!) : [];
   const [ActiveTasks, setActiveTasks] = useState<Task[]>(initialActiveTasks);
@@ -47,8 +29,9 @@ if (window.location.protocol === 'http:') {
     setActiveTasks([...ActiveTasks]);
     setUpdateTasks(true);
   }
-  function onAddTask(task: Task[]):void {
-    setActiveTasks(task);
+  function onAddTask(tasks: Task[]):void {
+    console.log(tasks);
+    setActiveTasks([...tasks]);
     setUpdateTasks(true);
   }
   function onUncheck(index: number): void {
@@ -79,13 +62,13 @@ if (window.location.protocol === 'http:') {
       })
       .catch(e => console.log(e))
   }, []);
-
+  
   useEffect(() => {
     if(UpdateTasks){
       updateTasks([...ActiveTasks,...CompletedTasks])
       setUpdateTasks(false);
     }
-  }, [UpdateTasks]) */
+  }, [UpdateTasks])  */
 
   function returnLineBreak(): any {
     if (CompletedTasks.length > 0 && ActiveTasks.length > 0) {
@@ -102,11 +85,13 @@ if (window.location.protocol === 'http:') {
     <div class="container mx-auto md:w-1/2">
       <h1 class="text-5xl">Todo App</h1>
       <AddTasks Tasks={ActiveTasks} onAddTask={onAddTask} />
-      <ActiveTask Tasks={ActiveTasks} onCheck={onCheck} onDelete={onDelete} />
+      <ActiveTask Tasks={ActiveTasks} onCheck={onCheck} onAddTask={onAddTask} onDelete={onDelete} />
       {returnLineBreak()}
       <CompletedTask CompletedTasks={CompletedTasks} onDelete={onUncheck} />
+      <Footer />
     </div>
   );
 }
 )
+
 

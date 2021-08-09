@@ -1,20 +1,20 @@
 {
   "name": "TodoApp",
   "short_name": "TodoApp",
-  "start_url": "https://todo.vivekkaushik.in",
+  "start_url": "/",
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#673ab8",
   "theme_color": "#fff",
   "icons": [
     {
-      "src": "https://todo.vivekkaushik.in/tick-box-192x192.png",
+      "src": "/tick-box-192x192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "https://todo.vivekkaushik.in/tick-box-512x512.png",
+      "src": "/tick-box-512x512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
