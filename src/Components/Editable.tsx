@@ -22,6 +22,8 @@ const Editable = ({ text, type, placeholder, children, childRef, handleOnInput, 
   function handleFocus(e: any) {
     if (e.type === "blur") {
       setEditing(false);
+    }else if(e.type === "focus"){
+      window.scrollTo(0, 240);
     }
   }
 
@@ -41,6 +43,7 @@ const Editable = ({ text, type, placeholder, children, childRef, handleOnInput, 
             value={text}
             onInput={handleOnInput}
             onKeyDown={(e: any) => HandleKeyDown(e, type)}
+            onFocus={handleFocus}
             onBlur={handleFocus}
           />
         </div>
