@@ -1,6 +1,6 @@
 import { Task } from "./Task";
 
 export interface Tasks{
-    id:number,
+    id:string,
     tasks:Array<Task>
 }
