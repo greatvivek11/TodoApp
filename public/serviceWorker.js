@@ -1,13 +1,14 @@
 var cacheName = 'cache-v1';
 
 var filesToCache = [
-	'./index.html',
-	'./index.html?utm_source=homescreen',
-  './bundle.js',
-  './manifest.json',
-  './tick-box-192x192.png',
-  './tick-box-512x512.png',
-  './icons8-tick-box.svg'
+	'/index.html',
+  '/',
+  '/dist/assets/index.ff80710c.js',
+  '/dist/assets/index.07b5d4d5.css',
+  '/manifest.json',
+  '/tick-box-192x192.png',
+  '/tick-box-512x512.png',
+  '/icons8-tick-box.svg'
 ];
 
 //Adding 'install' event listener
@@ -69,7 +70,6 @@ self.addEventListener('fetch', function (event) {
           function(cache) {
             cache.put(request, responseToCache); //Adding to cache
           });
-
         return response;
       });
     })

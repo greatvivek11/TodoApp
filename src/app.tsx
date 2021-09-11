@@ -11,7 +11,7 @@ import InitializingServiceWorker from './Components/ServiceWorker';
 import Footer from './Components/Footer';
 
 export const App = (() => {
-  InitializingServiceWorker;
+  // InitializingServiceWorker();
   const initialActiveTasks: Task[] = (localStorage.getItem("ActiveTasks") !== null) ? JSON.parse(localStorage.getItem("ActiveTasks")!!) : [];
   const initialCompletedTasks: Task[] = (localStorage.getItem("CompletedTasks") !== null) ? JSON.parse(localStorage.getItem("CompletedTasks")!!) : [];
   const [ActiveTasks, setActiveTasks] = useState<Task[]>(initialActiveTasks);
