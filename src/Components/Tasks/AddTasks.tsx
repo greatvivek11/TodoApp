@@ -1,22 +1,22 @@
 import { h } from 'preact';
-import { StateUpdater, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import { Task } from '../../Model/Task';
 import { TaskStatus } from '../../Model/TaskStatus';
+import { setActiveTasksState } from '../State';
 
-export default function AddTasks(props: any) {
-  const initialTask = { task: "", status: TaskStatus.Active };
-  const [newTask, setnewTask] = useState<Task>(initialTask);
-  const Tasks: Task[] = props.Tasks;
-  const onAddTask: StateUpdater<Task[]> = props.onAddTask;
+export default function AddTasks() {
+  const [newTask, setnewTask] = useState<string>("");
 
   function onSubmit(e: any) {
     e.preventDefault();
     e.target.reset();
-    onAddTask([...Tasks, newTask]);
-    setnewTask(initialTask);
+    setActiveTasksState((oldState: Task[]) => [
+        ...oldState,{ task: newTask, status: TaskStatus.Active }
+      ]);
+    setnewTask("");
   }
   function addInputChange(task: string) {
-    setnewTask({ task: task, status: TaskStatus.Active });
+    setnewTask(task);
   }
 
   return (

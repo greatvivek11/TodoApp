@@ -1,31 +1,42 @@
 import { h } from 'preact';
-import { StateUpdater, useRef } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import CheckButton from '../ButtonComponents/CheckButton';
 import DeleteButton from '../ButtonComponents/DeleteButton';
 import { Task } from '../../Model/Task';
 import Editable from "../Editable";
 import { TaskStatus } from '../../Model/TaskStatus';
+import { ActiveTasksState, CompletedTasksState, setActiveTasksState, setCompletedTasksState } from '../State';
 
-export default function ActiveTask(props: any) {
-    const Tasks: Task[] = props.Tasks;
-    const onCheck: StateUpdater<number> = props.onCheck;
-    const onAddTask: StateUpdater<Task[]> = props.onAddTask;
-    const onDelete: StateUpdater<number> = props.onDelete;
+export default function ActiveTask() {
+    const [Index, setIndex] = useState(-1);
+    const [NewTask, setNewTask] = useState<Task>({ task: "",status:TaskStatus.Active})
+    const ActiveTasks: Task[] = ActiveTasksState;
+    const CompletedTasks: Task[] = CompletedTasksState;
+
+    const onCheck = (index: number) => {
+        setCompletedTasksState([...CompletedTasks, {task:ActiveTasks[index].task,status:TaskStatus.Completed}]);
+        onDelete(index);
+    }
+    const onDelete = (index: number) => {
+        ActiveTasks.splice(index, 1);
+        setActiveTasksState(ActiveTasks);
+    }
     const inputRef = useRef<any>();
 
     function handleEditTask(e:any,i:number) {
-        const editedTask:Task = {task:e.target.value,status:TaskStatus.Active};
-        Tasks.splice(i, 1, editedTask);
+        setNewTask(x => x.task=e.target.value);
+        setIndex(i);
     }
     function pushTasks(e:any) {
         if (e.key === "Enter") {
-            onAddTask(Tasks);
+            ActiveTasks.splice(Index,1,NewTask);
+            setActiveTasksState(ActiveTasks);
         }
     }
 
     return (
         <div class="container overflow-y:auto mx-auto mb-5">
-            {Tasks?.map((task, i) => {
+            {ActiveTasks?.map((task, i) => {
                 return (
                     <div class="flex flex-wrap px-5 md:px-20">
                         <CheckButton onCheck={onCheck} index={i} />
@@ -45,4 +56,3 @@ export default function ActiveTask(props: any) {
         </div>
     )
 }
-

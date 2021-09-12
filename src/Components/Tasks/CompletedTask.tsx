@@ -1,11 +1,19 @@
 import { h } from 'preact';
-import { StateUpdater } from 'preact/hooks';
 import DeleteButton from '../ButtonComponents/DeleteButton';
 import { Task } from '../../Model/Task';
+import { TaskStatus } from '../../Model/TaskStatus';
+import { ActiveTasksState, CompletedTasksState, setActiveTasksState, setCompletedTasksState } from '../State';
 
-export default function CompletedTask(props: any) {
-    const CompletedTasks: Task[] = props.CompletedTasks;
-    const onDelete: StateUpdater<number> = props.onDelete;
+export default function CompletedTask() {
+    const CompletedTasks: Task[] = CompletedTasksState;
+    const ActiveTasks: Task[] = ActiveTasksState;
+
+    const onDelete = (index: number) => {
+        setActiveTasksState([...ActiveTasks, {task:CompletedTasks[index].task, status:TaskStatus.Active}]);
+        CompletedTasks.splice(index, 1);
+        setCompletedTasksState(CompletedTasks);
+    }
+
     return (
         <div class="container overflow-y:auto mx-auto mt-5 pb-2">
             {CompletedTasks?.map((task, i) => {
