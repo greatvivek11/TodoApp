@@ -1,11 +1,7 @@
 import { h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
-import { getTasks, updateTasks } from './Service/Service';
 import AddTasks from './Components/Tasks/AddTasks';
 import CompletedTask from './Components/Tasks/CompletedTask';
 import ActiveTask from './Components/Tasks/ActiveTask';
-import { Task } from './Model/Task';
-import { TaskStatus } from './Model/TaskStatus';
 import * as dotenv from 'dotenv';
 import InitializingServiceWorker from './Components/ServiceWorker';
 import Footer from './Components/Footer';
