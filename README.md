@@ -1,5 +1,5 @@
 ![example workflow](https://github.com/greatvivek11/TodoApp/actions/workflows/azure-static-web-apps-nice-wave-01c220503.yml/badge.svg)
-# A simple Todo App using Vite + Preact + Typescript + Tailwind CSS + Redux
+# A simple Todo App using Preact + Vite + Typescript + Tailwind CSS + Recoil
 
 > This project uses Vite for blazing fast development server ⚡
 
@@ -11,8 +11,9 @@
 - 📝 Eslint
 - ✨ Prettier
 - 🔱 Typescript
-- 💥 Redux for state management
+- 💥 Recoil for state management
 - 🔥 PWA
+- 🌈 Offline caching
 
 ## Installation
 
