@@ -6,5 +6,11 @@ export default defineConfig({
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
   },
+  resolve: {
+    alias: [
+      { find: 'react', replacement: 'preact/compat' },
+      { find: 'react-dom', replacement: 'preact/compat' },
+    ],
+  },
   plugins: [preactRefresh()],
 });

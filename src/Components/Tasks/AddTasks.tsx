@@ -1,22 +1,24 @@
 import { h } from 'preact';
-import { StateUpdater, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
+import { useSetRecoilState } from 'recoil';
+import { ActiveTasksState } from '../../Recoil/recoilState';
 import { Task } from '../../Model/Task';
 import { TaskStatus } from '../../Model/TaskStatus';
 
-export default function AddTasks(props: any) {
-  const initialTask = { task: "", status: TaskStatus.Active };
-  const [newTask, setnewTask] = useState<Task>(initialTask);
-  const Tasks: Task[] = props.Tasks;
-  const onAddTask: StateUpdater<Task[]> = props.onAddTask;
-
+export default function AddTasks() {
+  const [inputValue, setInputValue] = useState('');
+  const setActiveTasks = useSetRecoilState(ActiveTasksState);
+  
   function onSubmit(e: any) {
     e.preventDefault();
     e.target.reset();
-    onAddTask([...Tasks, newTask]);
-    setnewTask(initialTask);
+    setActiveTasks((oldState: Task[]) => [
+      ...oldState, { task: inputValue, status: TaskStatus.Active }
+    ]);
+    setInputValue('');
   }
   function addInputChange(task: string) {
-    setnewTask({ task: task, status: TaskStatus.Active });
+    setInputValue(task);
   }
 
   return (

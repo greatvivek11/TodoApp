@@ -1,11 +1,19 @@
 import { h } from 'preact';
-import { StateUpdater } from 'preact/hooks';
 import DeleteButton from '../ButtonComponents/DeleteButton';
 import { Task } from '../../Model/Task';
+import { TaskStatus } from '../../Model/TaskStatus';
+import { useRecoilState } from 'recoil';
+import { ActiveTasksState, CompletedTasksState } from '../../Recoil/recoilState';
 
-export default function CompletedTask(props: any) {
-    const CompletedTasks: Task[] = props.CompletedTasks;
-    const onDelete: StateUpdater<number> = props.onDelete;
+export default function CompletedTask() {
+    const [ActiveTasks, setActiveTasks] = useRecoilState(ActiveTasksState);
+    const [CompletedTasks, setCompletedTasks] = useRecoilState(CompletedTasksState);
+    const onDelete = (index: number) => {
+        setActiveTasks([...ActiveTasks, {task:CompletedTasks[index].task, status:TaskStatus.Active}]);
+        const newCT = CompletedTasks.filter((_,i) => i!=index);
+        setCompletedTasks(newCT);
+    }
+
     return (
         <div class="container overflow-y:auto mx-auto mt-5 pb-2">
             {CompletedTasks?.map((task, i) => {
