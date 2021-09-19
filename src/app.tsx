@@ -4,13 +4,11 @@ import AddTasks from './Components/Tasks/AddTasks';
 import CompletedTask from './Components/Tasks/CompletedTask';
 import ActiveTask from './Components/Tasks/ActiveTask';
 import { Task } from './Model/Task';
-import InitializingServiceWorker from './Components/ServiceWorker';
 import Footer from './Components/Footer';
 import { useRecoilValue } from 'recoil';
 import { ActiveTasksState, CompletedTasksState } from './Recoil/recoilState';
 
 export const App = (() => {
-  InitializingServiceWorker();
   
   const ActiveTasks = useRecoilValue<Task[]>(ActiveTasksState);
   const CompletedTasks = useRecoilValue<Task[]>(CompletedTasksState);

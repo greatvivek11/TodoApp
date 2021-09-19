@@ -12,6 +12,7 @@
 - ✨ Prettier
 - 🔱 Typescript
 - 💥 Recoil for state management
+-  Recoil-nexus for updating state outside react components
 - 🔥 PWA
 - 🌈 Offline caching
 
