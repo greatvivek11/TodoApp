@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useRef, useState } from 'preact/hooks';
+import { useRef } from 'preact/hooks';
 import CheckButton from '../ButtonComponents/CheckButton';
 import DeleteButton from '../ButtonComponents/DeleteButton';
 import Editable from "../Editable";
@@ -23,16 +23,11 @@ export default function ActiveTask() {
     }
     const inputRef = useRef<any>();
 
-    function handleEditTask(e: any, i: number) {
-        NewTask = e.target.value;
-        Index = i;
-    }
-    function pushTasks(e: any) {
+    function pushTasks(e: any,i:number) {
         if (e.key === "Enter") {
             setRecoil(ActiveTasksState,(tasks) => {
                 let newTasks = [...tasks];
-                newTasks[Index] = {task:e.target.value,status:TaskStatus.Active}
-                // console.log(newTasks);                
+                newTasks[i] = {task:e.target.value,status:TaskStatus.Active}
                 return newTasks;
             } );
         }
@@ -50,8 +45,7 @@ export default function ActiveTask() {
                             placeholder="Write a task name"
                             type="input"
                             childRef={inputRef}
-                            handleOnInput={(e: any) => handleEditTask(e, i)}
-                            handleKeyDown={(e: any) => pushTasks(e)}
+                            handleKeyDown={(e: any) => pushTasks(e,i)}
                         />
                         <DeleteButton onDelete={onDelete} index={i} />
                     </div>

@@ -49,7 +49,6 @@ self.addEventListener('activate', function (event) {
 
 //Adding 'fetch' event listener
 self.addEventListener('fetch', function (event) {
-  // console.log('WORKER: Fetching');
   var request = event.request;
 
   //Tell the browser to wait for network request and respond with below
