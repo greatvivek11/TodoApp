@@ -1,17 +1,15 @@
 import { h } from 'preact';
 import DeleteButton from '../ButtonComponents/DeleteButton';
-import { Task } from '../../Model/Task';
 import { TaskStatus } from '../../Model/TaskStatus';
-import { useRecoilState } from 'recoil';
 import { ActiveTasksState, CompletedTasksState } from '../../Recoil/recoilState';
+import { getRecoil, setRecoil } from 'recoil-nexus';
 
 export default function CompletedTask() {
-    const [ActiveTasks, setActiveTasks] = useRecoilState(ActiveTasksState);
-    const [CompletedTasks, setCompletedTasks] = useRecoilState(CompletedTasksState);
+    const ActiveTasks = getRecoil(ActiveTasksState);
+    const CompletedTasks = getRecoil(CompletedTasksState);
     const onDelete = (index: number) => {
-        setActiveTasks([...ActiveTasks, {task:CompletedTasks[index].task, status:TaskStatus.Active}]);
-        const newCT = CompletedTasks.filter((_,i) => i!=index);
-        setCompletedTasks(newCT);
+        setRecoil(ActiveTasksState,[...ActiveTasks, {task:CompletedTasks[index].task, status:TaskStatus.Active}]);
+        setRecoil(CompletedTasksState,CompletedTasks.filter((_,i) => i!=index));
     }
 
     return (

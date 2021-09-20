@@ -1,18 +1,17 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
-import { useSetRecoilState } from 'recoil';
 import { ActiveTasksState } from '../../Recoil/recoilState';
 import { Task } from '../../Model/Task';
 import { TaskStatus } from '../../Model/TaskStatus';
+import { setRecoil } from 'recoil-nexus';
 
 export default function AddTasks() {
   const [inputValue, setInputValue] = useState('');
-  const setActiveTasks = useSetRecoilState(ActiveTasksState);
   
   function onSubmit(e: any) {
     e.preventDefault();
     e.target.reset();
-    setActiveTasks((oldState: Task[]) => [
+    setRecoil(ActiveTasksState,(oldState: Task[]) => [
       ...oldState, { task: inputValue, status: TaskStatus.Active }
     ]);
     setInputValue('');
