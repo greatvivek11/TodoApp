@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { useState, useEffect } from "preact/hooks";
 
-const Editable = ({ text, type, placeholder, children, childRef, handleOnInput, handleKeyDown, ...props }: any) => {
+const Editable = ({ text, type, placeholder, children, childRef, handleKeyDown, ...props }: any) => {
   const [isEditing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const Editable = ({ text, type, placeholder, children, childRef, handleOnInput, 
             name="task"
             placeholder={placeholder}
             value={text}
-            onInput={handleOnInput}
             onKeyDown={(e: any) => HandleKeyDown(e, type)}
             onFocus={handleFocus}
             onBlur={handleFocus}
