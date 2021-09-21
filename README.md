@@ -11,10 +11,10 @@
 - 📝 Eslint
 - ✨ Prettier
 - 🔱 Typescript
-- 💥 Recoil for state management
--  Recoil-nexus for updating state outside react components
-- 🔥 PWA
-- 🌈 Offline caching
+- 💥 Recoil for state management.
+- 🔥 PWA - Auto update.
+- 🌈 Offline caching - Cache first approach.
+- 🌟 Local storage for persisting data on device.
 
 ## Installation
 
