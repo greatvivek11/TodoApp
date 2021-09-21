@@ -1,11 +1,15 @@
 import { atom } from 'recoil';
 import { Task } from '../Model/Task';
 
-export const ActiveTasksState = atom<Task[]>({
-    key: 'ActiveTasksState',
-    default: (localStorage.getItem("ActiveTasks") !== null ) ? JSON.parse(localStorage.getItem("ActiveTasks")!!) : [],
+export const TasksState = atom<Task[]>({
+    key: 'TasksState',
+    default: (localStorage.getItem("Tasks") !== null) ? JSON.parse(localStorage.getItem("Tasks")!!) : [],
 });
-export const CompletedTasksState = atom<Task[]>({
-    key: 'CompletedTasksState',
-    default: (localStorage.getItem("CompletedTasks") !== null) ? JSON.parse(localStorage.getItem("CompletedTasks")!!) : [],
-});
+
+export function updateTaskAtIndex(tasks:Task[],task:Task,i:number):Task[] {
+    const newTasks = [...tasks];
+    console.log(task);
+    newTasks[i] = task;
+    console.log(newTasks);
+    return newTasks;
+}

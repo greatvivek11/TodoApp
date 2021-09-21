@@ -3,44 +3,33 @@ import { useEffect } from 'preact/hooks';
 import AddTasks from './Components/Tasks/AddTasks';
 import CompletedTask from './Components/Tasks/CompletedTask';
 import ActiveTask from './Components/Tasks/ActiveTask';
-import { Task } from './Model/Task';
 import Footer from './Components/Footer';
 import { useRecoilValue } from 'recoil';
-import { ActiveTasksState, CompletedTasksState } from './Recoil/recoilState';
+import process from 'dotenv';
+import { TasksState } from './Recoil/recoilState';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { TaskStatus } from './Model/TaskStatus';
 
 export const App = (() => {
-  
-  const ActiveTasks = useRecoilValue<Task[]>(ActiveTasksState);
-  const CompletedTasks = useRecoilValue<Task[]>(CompletedTasksState);
+
+  const Tasks = useRecoilValue(TasksState);
 
   useEffect(() => {
-    localStorage.setItem('ActiveTasks', JSON.stringify(ActiveTasks));
-  }, [ActiveTasks])
+    localStorage.setItem('Tasks', JSON.stringify(Tasks));
+  }, [Tasks])
 
-  useEffect(() => {
-    localStorage.setItem('CompletedTasks', JSON.stringify(CompletedTasks));
-  }, [CompletedTasks])
-
-  function returnLineBreak(): any {
-    if (CompletedTasks.length > 0 && ActiveTasks.length > 0) {
-      return (
-        <hr></hr>
-      );
-    }
-  }
-
-  console.log("Active Tasks: " + ActiveTasks.length);
-  console.log("Completed Tasks: " + CompletedTasks.length);
+  console.log("Tasks: " + Tasks.length);
 
   return (
-      <div class="container mx-auto lg:w-1/2">
-        <h1 class="text-5xl">Todo App</h1>
-        <AddTasks />
-        <ActiveTask />
-        {returnLineBreak()}
-        <CompletedTask />
-        <Footer />
-      </div>
+    <div class="container mx-auto lg:w-1/2">
+      <h1 class="text-5xl">Todo App</h1>
+      <ToastContainer position="top-center" style={{fontSize:16}} theme="colored" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <AddTasks />
+      <ActiveTask />
+      {(Tasks.filter(tasks => tasks.status===TaskStatus.Active).length>0 && Tasks.filter(tasks => tasks.status===TaskStatus.Completed).length>0) ? <hr /> : ''}
+      <CompletedTask />
+      <Footer />
+    </div>
   );
-}
-)
+})
