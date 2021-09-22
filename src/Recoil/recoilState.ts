@@ -8,8 +8,6 @@ export const TasksState = atom<Task[]>({
 
 export function updateTaskAtIndex(tasks:Task[],task:Task,i:number):Task[] {
     const newTasks = [...tasks];
-    console.log(task);
     newTasks[i] = task;
-    console.log(newTasks);
     return newTasks;
 }

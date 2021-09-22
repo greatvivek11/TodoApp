@@ -6,18 +6,18 @@ import { useRecoilState } from 'recoil';
 import UncheckButton from '../ButtonComponents/UncheckButton';
 
 export default function CompletedTask() {
-    const [Tasks,setTasksState] = useRecoilState(TasksState);
+    const [Tasks, setTasksState] = useRecoilState(TasksState);
 
     const onUncheck = (task: string) => {
-        const index = Tasks.findIndex((oldTask)=> oldTask.task===task)
-        const newTask = {task:task,status:TaskStatus.Active}
-        setTasksState(oldTasks => updateTaskAtIndex(oldTasks,newTask,index))
+        const index = Tasks.findIndex((oldTask) => oldTask.task === task)
+        const newTask = { task: task, status: TaskStatus.Active }
+        setTasksState(oldTasks => updateTaskAtIndex(oldTasks, newTask, index))
         toast.info('Task has been set to Active!');
     }
 
     return (
         <div class="container overflow-y:auto mx-auto mt-5 pb-2">
-            {Tasks?.filter((task) => task.status===TaskStatus.Completed).map((task) => {
+            {Tasks?.filter((task) => task.status === TaskStatus.Completed).map((task) => {
                 return (
                     <div class="flex flex-wrap px-5 md:px-20">
                         <UncheckButton onUncheck={onUncheck} task={task.task} />

@@ -4,17 +4,19 @@
   "scripts": {
     "dev": "vite",
     "tsc": "tsc -p . --noEmit",
+    "prebuild": "npm run version:output",
     "build": "cross-env NODE_ENV=production vite build",
-    "clean": "rm -rf .cache .tmp lib build"
+    "clean": "rm -rf dist .cache .tmp lib build && mkdir dist",
+    "version:output": "echo 'export const Version =  \"'$npm_package_version'\"; ' > version.ts"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "preact": "^10.5.10",
     "react-toastify": "^8.0.2",
     "recoil": "^0.4.1"
   },
   "devDependencies": {
     "@prefresh/vite": "^2.0.1",
+    "replace": "^1.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "@types/node": "^16.9.3",
     "@types/react": "^17.0.21",

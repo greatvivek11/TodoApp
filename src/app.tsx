@@ -5,7 +5,6 @@ import CompletedTask from './Components/Tasks/CompletedTask';
 import ActiveTask from './Components/Tasks/ActiveTask';
 import Footer from './Components/Footer';
 import { useRecoilValue } from 'recoil';
-import process from 'dotenv';
 import { TasksState } from './Recoil/recoilState';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,10 +23,10 @@ export const App = (() => {
   return (
     <div class="container mx-auto lg:w-1/2">
       <h1 class="text-5xl">Todo App</h1>
-      <ToastContainer position="top-center" style={{fontSize:16}} theme="colored" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer position="top-center" style={{ fontSize: 16 }} theme="colored" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <AddTasks />
       <ActiveTask />
-      {(Tasks.filter(tasks => tasks.status===TaskStatus.Active).length>0 && Tasks.filter(tasks => tasks.status===TaskStatus.Completed).length>0) ? <hr /> : ''}
+      {(Tasks.filter(tasks => tasks.status === TaskStatus.Active).length > 0 && Tasks.filter(tasks => tasks.status === TaskStatus.Completed).length > 0) ? <hr /> : ''}
       <CompletedTask />
       <Footer />
     </div>
