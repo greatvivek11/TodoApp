@@ -2,12 +2,10 @@
   "name": "preact-vite-tailwind-todo-app",
   "version": "1.5.1",
   "scripts": {
-    "dev": "vite",
+    "dev": "VITE_PACKAGE_VERSION=$npm_package_version vite",
     "tsc": "tsc -p . --noEmit",
-    "prebuild": "npm run version:output",
-    "build": "cross-env NODE_ENV=production vite build",
-    "clean": "rm -rf dist .cache .tmp lib build && mkdir dist",
-    "version:output": "echo 'export const Version =  \"'$npm_package_version'\"; ' > version.ts"
+    "build": "VITE_PACKAGE_VERSION=$npm_package_version cross-env NODE_ENV=production vite build",
+    "clean": "rm -rf dist .cache .tmp lib build && mkdir dist"
   },
   "dependencies": {
     "preact": "^10.5.10",
