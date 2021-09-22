@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  "include": ["src", "src/main.tsx", "service-worker.js"]
+  "include": ["src", "src/main.tsx", "service-worker.js", "global.d.ts", "public/serviceWorker.js"]
 }

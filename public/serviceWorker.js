@@ -1,4 +1,4 @@
-var cacheName = 'cache-v6';
+var cacheName = "version-0"
 
 var filesToCache = [
   '/index.html',
