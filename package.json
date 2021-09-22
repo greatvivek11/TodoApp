@@ -4,8 +4,10 @@
   "scripts": {
     "dev": "VITE_PACKAGE_VERSION=$npm_package_version vite",
     "tsc": "tsc -p . --noEmit",
+    "prebuild":"npm run pwaVersion",
     "build": "VITE_PACKAGE_VERSION=$npm_package_version cross-env NODE_ENV=production vite build",
-    "clean": "rm -rf dist .cache .tmp lib build && mkdir dist"
+    "clean": "rm -rf dist .cache .tmp lib build && mkdir dist",
+    "pwaVersion":"awk -v myvar='0' '/var cacheName/{gsub(\"\\\"\",\"\"); split($NF,a,\"-\"); myvar = a[2]; gsub(a[2],a[2]++); gsub(\"version\",\"\\x22\"\"version\"); gsub(myvar,a[2]\"\\x22\");}1' public/serviceWorker.js > .tmp && mv .tmp public/serviceWorker.js"
   },
   "dependencies": {
     "preact": "^10.5.10",

@@ -19,7 +19,7 @@ export const App = (() => {
   }, [Tasks])
 
   console.log("Tasks: " + Tasks.length);
-
+  
   return (
     <div class="container mx-auto lg:w-1/2">
       <h1 class="text-5xl">Todo App</h1>
