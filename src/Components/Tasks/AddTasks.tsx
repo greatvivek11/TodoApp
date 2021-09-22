@@ -1,9 +1,7 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { TasksState } from '../../Recoil/recoilState';
-import { Task } from '../../Model/Task';
 import { TaskStatus } from '../../Model/TaskStatus';
-import { setRecoil } from 'recoil-nexus';
 import { toast } from 'react-toastify';
 import { useSetRecoilState } from 'recoil';
 
@@ -18,7 +16,7 @@ export default function AddTasks() {
     toast.success('Task has been added successfully!');
     setInputValue('');
   }
-  
+
   function addInputChange(task: string) {
     setInputValue(task);
   }
