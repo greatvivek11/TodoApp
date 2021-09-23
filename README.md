@@ -15,8 +15,9 @@
 - 🔥 PWA - Auto update.
 - 🌈 Offline caching - Cache first approach.
 - 🌟 Local storage for persisting data on device.
-- Automated Build versioning using Github Actions.
-- Editable tasks.
+- 🔱 Automated Build versioning using Github Actions.
+- ✅ Editable tasks.
+- 💃 Automated ServiceWorker versioning.
 
 ## Installation
 
