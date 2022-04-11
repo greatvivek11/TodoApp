@@ -1,9 +1,10 @@
 import {h} from 'preact';
 import { StateUpdater } from 'preact/hooks';
+import { Task } from '../../Model/Task';
 
 export default function CheckButton(props:any) {
-    const onCheck: StateUpdater<string> = props.onCheck;
-    const task:string = props.task;
+    const onCheck: StateUpdater<Task> = props.onCheck;
+    const task:Task = props.task;
 
     return (
         <div>
