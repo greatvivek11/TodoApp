@@ -1,9 +1,10 @@
 import {h} from 'preact'
 import { StateUpdater } from 'preact/hooks';
+import { Task } from '../../Model/Task';
 
 export default function UncheckButton(props:any) {
-    const onUncheck: StateUpdater<string> = props.onUncheck;
-    const task:string = props.task;
+    const onUncheck: StateUpdater<Task> = props.onUncheck;
+    const task:Task = props.task;
     return (
         <div>
             <button class="flex-none px-2" type="delete" onClick={() => onUncheck(task)}>
