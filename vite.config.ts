@@ -1,16 +1,33 @@
-import preactRefresh from '@prefresh/vite';
-import { defineConfig } from 'vite';
+import federation from "@originjs/vite-plugin-federation";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment',
-  },
-  resolve: {
-    alias: [
-      { find: 'react', replacement: 'preact/compat' },
-      { find: 'react-dom', replacement: 'preact/compat' },
-    ],
-  },
-  plugins: [preactRefresh()],
+	resolve: {
+		alias: {
+			"@": "/src",
+		},
+	},
+	plugins: [
+		react(),
+		federation({
+			name: "todoApp",
+			filename: "remoteEntry.js",
+			exposes: {
+				"./Main": "./src/main.jsx",
+			},
+			shared: ["react", "react-dom"],
+		}),
+	],
+	build: {
+		target: "esnext",
+	},
+	esbuild: {
+		target: "esnext",
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			target: "esnext",
+		},
+	},
 });
