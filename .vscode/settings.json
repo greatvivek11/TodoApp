@@ -1,8 +1,71 @@
 {
-    "azureFunctions.deploySubpath": "api",
-    "azureFunctions.postDeployTask": "npm install (functions)",
-    "azureFunctions.projectLanguage": "TypeScript",
-    "azureFunctions.projectRuntime": "~3",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune (functions)"
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "files.autoSaveDelay": 2000,
+  "files.autoSave": "afterDelay",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.fontSize": 16,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "terminal.integrated.fontSize": 14,
+  "editor.foldingImportsByDefault": true,
+  "git.confirmSync": false,
+  "editor.accessibilitySupport": "off",
+  "explorer.confirmDelete": false,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "git.ignoreRebaseWarning": true,
+  "explorer.confirmDragAndDrop": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "always",
+    "source.addMissingImports": "always",
+    "source.fixAll": "always",
+    "source.organizeImports.biome": "always",
+    "source.removeUnusedImports": "always",
+    "source.sortImports": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "editor.cursorBlinking": "expand",
+  "editor.cursorWidth": 0,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "block",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "files.associations": {
+    "*.yml": "yaml"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/vivek/Projects/next-cloudflare-app/.github/workflows/deploy.yml"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "vscode-edge-devtools.browserFlavor": "Default",
+  "vscode-edge-devtools.defaultUrl": "http:localhost:3000",
+  "terminal.explorerKind": "integrated"
 }

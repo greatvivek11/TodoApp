@@ -1,18 +1,31 @@
-import {h} from 'preact';
-import { StateUpdater } from 'preact/hooks';
-import { Task } from '../../Model/Task';
+import type { Task } from "@/Model/Task";
 
-export default function CheckButton(props:any) {
-    const onCheck: StateUpdater<Task> = props.onCheck;
-    const task:Task = props.task;
-
-    return (
-        <div>
-            <button class="flex-none px-2" type="button" onClick={() => onCheck(task)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-            </button>
-        </div>
-    )
+export default function CheckButton({
+	onCheck,
+	task,
+}: { onCheck: (task: Task) => void; task: Task }) {
+	return (
+		<div>
+			<button
+				className="flex-none px-2"
+				type="button"
+				onClick={() => onCheck(task)}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					className="h-5 w-5"
+					viewBox="0 0 20 20"
+					fill="currentColor"
+					aria-label="Check"
+					role="img"
+				>
+					<path
+						fillRule="evenodd"
+						d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+						clipRule="evenodd"
+					/>
+				</svg>
+			</button>
+		</div>
+	);
 }

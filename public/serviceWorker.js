@@ -1,4 +1,4 @@
-var cacheName = "version-0"
+var cacheName = "version-3"
 
 var filesToCache = [
   '/index.html',
